@@ -1,0 +1,7 @@
+.settings
+.idea
+.DS_Store
+nbproject/
+/test-*.*
+.project
+
