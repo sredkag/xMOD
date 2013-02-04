@@ -6,9 +6,9 @@ void onInit( CRules@ this ) {
     scr = getModScripts("gamemode_"+sv_gamemode);
     for (uint i = 0;i<scr.length;i++) {
         if (scr[i].length > 0 && scr[i] != "") {
-            print("=X= - xLoading "+scr[i]);
+            print("=X= xLoading "+scr[i]);
             this.AddScript(scr[i]);
-            print("=X= - xLoaded!");
+            print("=X= xLoaded!");
         }
     }
     print("=X= "+scr.length+" "+sv_gamemode+" scripts loaded.");
@@ -22,9 +22,9 @@ void onInit(CBlob@ this) {
         scr = getModScripts("blob_"+n);
         for (uint i = 0;i<scr.length;i++) {
             if (scr[i].length > 0 && scr[i] != "") {
-                print("=X= - xLoading "+scr[i]);
+                print("=X= xLoading "+scr[i]);
                 this.AddScript(scr[i]);
-                print("=X= - xLoaded!");
+                print("=X= xLoaded!");
             }
         }
         print("=X= "+scr.length+" "+n+" scripts loaded.");
@@ -40,9 +40,9 @@ void onInit(CSprite@ this) {
         scr = getModScripts("blob_"+n+"_sprite");
         for (uint i = 0;i<scr.length;i++) {
             if (scr[i].length > 0 && scr[i] != "") {
-                print("=X= - xLoading "+scr[i]);
+                print("=X= xLoading "+scr[i]);
                 this.AddScript(scr[i]);
-                print("=X= - xLoaded!");
+                print("=X= xLoaded!");
             }
         }
         print("=X= "+scr.length+" "+n+" sprite scripts loaded.");
@@ -56,7 +56,7 @@ array<string> getModScripts(string name) {
     ConfigFile cfg("../Mods/xMOD/config");
     array<string> test;
     string key = name+"_scripts";
-    print("=X= - Attempting to load key "+key+" data...");
+    print("=X= Attempting to load key "+key+" data...");
     if (cfg.keyExists(key)) {
         cfg.readIntoArray_string(test,key);
     } else {
