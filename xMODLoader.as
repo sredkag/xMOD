@@ -3,7 +3,7 @@
 // Rules loader
 void onInit( CRules@ this ) {
     array<string> scr;
-    scr = getModScripts("Rules/"+sv_gamemode);
+    scr = getModScripts("gamemode_"+sv_gamemode);
     for (uint i = 0;i<scr.length;i++) {
         if (scr[i].length > 0 && scr[i] != "") {
             print("=X= - xLoading "+scr[i]);
@@ -19,7 +19,7 @@ void onInit(CBlob@ this) {
     string n = this.getName();
     if (n != "") {
         array<string> scr;
-        scr = getModScripts("Blobs/"+n);
+        scr = getModScripts("blob_"+n);
         for (uint i = 0;i<scr.length;i++) {
             if (scr[i].length > 0 && scr[i] != "") {
                 print("=X= - xLoading "+scr[i]);
@@ -27,7 +27,7 @@ void onInit(CBlob@ this) {
                 print("=X= - xLoaded!");
             }
         }
-        print(scr.length+" "+n+" scripts loaded.");
+        print("=X= "+scr.length+" "+n+" scripts loaded.");
     }
 }
 
@@ -37,7 +37,7 @@ void onInit(CSprite@ this) {
     string n = blob.getName();
     if (n != "") {
         array<string> scr;
-        scr = getModScripts("Blobs/"+n+"_sprite");
+        scr = getModScripts("blob_"+n+"_sprite");
         for (uint i = 0;i<scr.length;i++) {
             if (scr[i].length > 0 && scr[i] != "") {
                 print("=X= - xLoading "+scr[i]);
@@ -45,15 +45,22 @@ void onInit(CSprite@ this) {
                 print("=X= - xLoaded!");
             }
         }
-        print("=X="+scr.length+" "+n+" sprite scripts loaded.");
+        print("=X= "+scr.length+" "+n+" sprite scripts loaded.");
     }
 }
 
 
 // helper method for loading CFGs
 array<string> getModScripts(string name) {
-    ConfigFile cfg("../Mods/xMOD/Configs/"+name+".x");
+    //ConfigFile cfg("../Mods/xMOD/Configs/"+name+".x");
+    ConfigFile cfg("../Mods/xMOD/config");
     array<string> test;
-    cfg.readIntoArray_string(test, "scripts");
+    string key = name+"_scripts";
+    print("=X= - Attempting to load key "+key+" data...");
+    if (cfg.keyExists(key)) {
+        cfg.readIntoArray_string(test,key);
+    } else {
+        print("=X= FAILED loading config key "+key);
+    }
     return test;
 }
