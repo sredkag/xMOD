@@ -1,6 +1,6 @@
 // helper method for loading CFGs
 array<string> getModScripts(string name) {
-    ConfigFile cfg("../Mods/xMOD/config");
+    ConfigFile cfg("../../config");
     array<string> test;
     string key = name+"_scripts";
     print("=X= Attempting to load key "+key+" data...");
